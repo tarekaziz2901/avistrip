@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Journey — Memory Scrapbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating particles (global) -->
+  <div id="particles" aria-hidden="true"></div>
+
+  <!-- 🎵 Music Player -->
+  <div class="music-player" id="musicPlayer">
+    <button class="music-toggle" id="musicToggle" aria-label="Toggle music">▶</button>
+    <div class="music-info">
+      <span class="music-title" id="musicTitle">Romantic Journey</span>
+      <button class="music-next" id="musicNext" aria-label="Next song">⏭</button>
+    </div>
+  </div>
+  <audio id="music" loop></audio>
+
+  <!-- 🏠 Cover Page -->
+  <section class="cover" id="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-overlay"></div>
+    <div class="cover-stars" aria-hidden="true"></div>
+    <div class="cover-content">
+      <p class="cover-subtitle">✨ Our Journey</p>
+      <h1 class="cover-title">Every picture tells a story,<br>and every story becomes a memory.</h1>
+      <button class="btn-begin" id="beginBtn">Begin Our Adventure ❤️</button>
+    </div>
+    <div class="floating-hearts cover-hearts" aria-hidden="true"></div>
+  </section>
+
+  <!-- Main Content (hidden until cover dismissed) -->
+  <main id="mainContent" class="main-hidden">
+
+    <!-- 📸 Instagram Feed Memories -->
+    <section class="section feed-section" id="memories">
+      <div class="section-header">
+        <span class="section-tag">Chapter One</span>
+        <h2>📸 Our Memories</h2>
+        <p class="section-desc">Stories from every adventure, one post at a time</p>
+      </div>
+      <div class="feed" id="feedContainer"></div>
+    </section>
+
+    <!-- 🖼 Group Photo Slider -->
+    <section class="section slider-section">
+      <div class="section-header">
+        <span class="section-tag">Together</span>
+        <h2>🖼 Group Moments</h2>
+        <p class="section-desc">The best memories are the ones we share</p>
+      </div>
+      <div class="slider-wrap">
+        <button class="slider-btn slider-prev" id="sliderPrev" aria-label="Previous slide">‹</button>
+        <div class="slider-viewport">
+          <div class="slider-track" id="sliderTrack"></div>
+        </div>
+        <button class="slider-btn slider-next" id="sliderNext" aria-label="Next slide">›</button>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+    </section>
+
+    <!-- 😂 Funny Moments — Polaroids -->
+    <section class="section polaroid-section">
+      <div class="section-header">
+        <span class="section-tag">Laugh Out Loud</span>
+        <h2>😂 Funny Moments</h2>
+        <p class="section-desc">Polaroids, tape, and memories that make us smile</p>
+      </div>
+      <div class="polaroid-grid" id="polaroidGrid"></div>
+    </section>
+
+    <!-- 💕 Romantic Moments -->
+    <section class="section polaroid-section polaroid-section--romantic">
+      <div class="section-header">
+        <span class="section-tag">For You</span>
+        <h2>💕 Romantic Moments</h2>
+        <p class="section-desc">Love, laughter, and little adventures together</p>
+      </div>
+      <div class="polaroid-grid" id="romanticGrid"></div>
+    </section>
+
+    <!-- 🍕 Food Moments -->
+    <section class="section polaroid-section polaroid-section--food">
+      <div class="section-header">
+        <span class="section-tag">Yummy</span>
+        <h2>🍕 Food Moments</h2>
+        <p class="section-desc">Every meal tastes better when we're together</p>
+      </div>
+      <div class="polaroid-grid" id="foodGrid"></div>
+    </section>
+
+    <!-- 📸 Special Moments -->
+    <section class="section polaroid-section polaroid-section--moments">
+      <div class="section-header">
+        <span class="section-tag">Unforgettable</span>
+        <h2>📸 Special Moments</h2>
+        <p class="section-desc">Snapshots that mean everything</p>
+      </div>
+      <div class="polaroid-grid" id="momentsGrid"></div>
+    </section>
+
+    <!-- 💌 Memory Letters -->
+    <section class="section letters-section">
+      <div class="section-header">
+        <span class="section-tag">From The Heart</span>
+        <h2>💌 Memory Letters</h2>
+        <p class="section-desc">Click an envelope to open a letter</p>
+      </div>
+      <div class="envelopes" id="envelopes"></div>
+    </section>
+
+    <!-- 🎓 Official Moments -->
+    <section class="section official-section">
+      <div class="section-header">
+        <span class="section-tag">Milestones</span>
+        <h2>🎓 Official Moments</h2>
+        <p class="section-desc">Celebrations worth remembering forever</p>
+      </div>
+      <div class="official-grid" id="officialGrid"></div>
+    </section>
+
+    <!-- ❤️ Personal Memories -->
+    <section class="section personal-section">
+      <div class="section-header">
+        <span class="section-tag">Just Us</span>
+        <h2>❤️ Personal Memories</h2>
+        <p class="section-desc">Little moments, big feelings</p>
+      </div>
+      <p class="typewriter" id="typewriter"></p>
+      <div class="pinterest-grid" id="personalGrid"></div>
+    </section>
+
+    <!-- 📷 Gallery -->
+    <section class="section gallery-section">
+      <div class="section-header">
+        <span class="section-tag">Explore</span>
+        <h2>📷 Gallery</h2>
+        <p class="section-desc">Browse every memory by category</p>
+      </div>
+      <div class="gallery-filters" id="galleryFilters"></div>
+      <div class="masonry" id="masonryGallery"></div>
+    </section>
+
+    <!-- ⏳ Memory Counter -->
+    <section class="section stats-section">
+      <div class="section-header">
+        <span class="section-tag">By The Numbers</span>
+        <h2>⏳ Our Story In Numbers</h2>
+      </div>
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <span class="stat-num" data-target="trips">0</span>
+          <span class="stat-label">Trips Together</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="photos">0</span>
+          <span class="stat-label">Photos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-target="countries">0</span>
+          <span class="stat-label">Countries Visited</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num stat-infinity" data-target="infinity">0</span>
+          <span class="stat-label">Memories Created</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ Final Page -->
+    <section class="final" id="final">
+      <canvas id="fireworks" aria-hidden="true"></canvas>
+      <div class="final-stars" aria-hidden="true"></div>
+      <div class="final-fireflies" aria-hidden="true"></div>
+      <div class="final-content">
+        <h2>Will you continue this journey with me? ❤️</h2>
+        <div class="btns">
+          <button id="yesBtn">YES 🥰</button>
+          <button id="noBtn">NO 😜</button>
+        </div>
+        <div id="finalMessage" class="final-message"></div>
+      </div>
+      <div class="floating-hearts final-hearts" aria-hidden="true"></div>
+    </section>
+
+  </main>
+
+  <!-- Letter Modal -->
+  <div class="modal-overlay" id="letterModal">
+    <div class="modal letter-modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="letter-paper" id="letterContent"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+    <img id="lightboxImg" src="" alt="Memory photo">
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
