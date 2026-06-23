@@ -40,10 +40,10 @@ async function discoverPhotos(folder, prefix, max) {
 
 async function loadAllPhotos() {
   try {
-    const res = await fetch('photos.php', { cache: 'no-store' });
+    const res = await fetch('photos.json', { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
-      if (data.source === 'php' && data.folders) {
+      if (data.source === 'json' && data.folders) {
         PHOTO_KEYS.forEach(key => {
           PHOTO_STORE[key] = data.folders[key] || [];
         });
@@ -51,7 +51,7 @@ async function loadAllPhotos() {
       }
     }
   } catch (e) {
-    console.warn('photos.php unavailable, scanning folders…', e);
+    console.warn('photos.json unavailable, scanning folders…', e);
   }
 
   const scans = await Promise.all(
